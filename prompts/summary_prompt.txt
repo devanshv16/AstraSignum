@@ -1,0 +1,7 @@
+Summarize this UFO case transcript into:
+1. a short summary,
+2. 3 to 5 key points,
+3. major people,
+4. major places,
+5. major organizations,
+6. referenced years.

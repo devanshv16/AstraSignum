@@ -1,0 +1,6 @@
+youtube-transcript-api==0.6.2
+yt-dlp==2025.1.26
+spacy==3.8.2
+rapidfuzz==3.10.1
+pandas==2.2.3
+python-dateutil==2.9.0.post0

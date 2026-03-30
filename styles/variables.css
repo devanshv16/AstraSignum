@@ -1,0 +1,9 @@
+:root {
+  --bg: #07111f;
+  --panel: #0f1b2d;
+  --panel-2: #12233a;
+  --text: #e8eef8;
+  --muted: #9db0c9;
+  --accent: #7dd3fc;
+  --border: rgba(255, 255, 255, 0.08);
+}

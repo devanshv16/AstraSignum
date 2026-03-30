@@ -1,0 +1,6 @@
+Build a compact person profile from transcript snippets:
+- who the person is,
+- their role in the case,
+- timeline facts,
+- associated places,
+- associated organizations.
