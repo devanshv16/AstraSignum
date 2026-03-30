@@ -54,28 +54,31 @@ def load_videos() -> List[Dict[str, Any]]:
     if not isinstance(data, list):
         raise ValueError(f"{VIDEOS_PATH} must contain a JSON list.")
 
-    valid_videos = []
-    for item in data:
-        if not isinstance(item, dict):
-            continue
-        if not item.get("url"):
-            continue
-        valid_videos.append(item)
-
-    return valid_videos
+    return [item for item in data if isinstance(item, dict) and item.get("url")]
 
 
 def fetch_transcript(video_url: str) -> Tuple[str, List[Dict[str, Any]]]:
     video_id = extract_video_id(video_url)
-    transcript = YouTubeTranscriptApi.get_transcript(video_id)
-    return video_id, transcript
+    ytt_api = YouTubeTranscriptApi()
+    transcript = ytt_api.fetch(video_id)
+
+    segments = []
+    for item in transcript:
+        segments.append(
+            {
+                "text": getattr(item, "text", ""),
+                "start": getattr(item, "start", 0.0),
+                "duration": getattr(item, "duration", 0.0),
+            }
+        )
+
+    return video_id, segments
 
 
 def save_transcript(slug: str, transcript: List[Dict[str, Any]]) -> str:
     ensure_dir(RAW_TRANSCRIPTS_DIR)
     output_path = os.path.join(RAW_TRANSCRIPTS_DIR, f"{slug}.json")
 
-    # Save ONLY the raw segment list so it matches clean_transcript.py
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(transcript, f, indent=2, ensure_ascii=False)
 

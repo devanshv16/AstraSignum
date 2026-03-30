@@ -1,4 +1,4 @@
-youtube-transcript-api==0.6.2
+youtube-transcript-api==1.2.4
 yt-dlp==2025.1.26
 spacy==3.8.2
 rapidfuzz==3.10.1
